@@ -2,7 +2,8 @@ const mongoose = require('mongoose')
 
 const thumbSchema = new mongoose.Schema({
   url: {
-    type: String
+    type: String,
+    default: ''
   },
   width: {
     type: Number,
@@ -37,6 +38,7 @@ const userSchema = new mongoose.Schema({
   },
   position: {
     type: String,
+    default: '팀원',
     enum: ['팀원', '팀장']
   },
   img: thumbSchema
