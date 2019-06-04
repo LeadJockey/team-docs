@@ -1,30 +1,45 @@
 const User = require('./user.schema')
+const { encodePWD, createSendData } = require('./../../index')
 
 const create = (body, res) => {
   const { email, pwd } = body
   const user = new User({ email, pwd })
-  user.save((err, user) => {
-    if (err) {
-      res.json({ code: err.code, msg: err.errmsg })
-      return console.log('err', err)
-    }
-    res.json({ code: 200, msg: `${user.email} saved to users collection` })
+  user.save((err, result) => {
+    if (err) return res.json(createSendData(500, 'ERROR', err))
+    return res.json(createSendData(200, 'SUCCESS', result))
   })
 }
-const update = opts => {}
-const remove = (req, res) => {}
+
+const update = (body, res) => {
+  const { email, data } = body
+  User.updateOne({ email: email }, data, (err, result) => {
+    if (err) return res.json(createSendData(500, 'ERROR', err))
+    return res.json(createSendData(200, 'SUCCESS', result))
+  })
+}
+
+const remove = (params, res) => {
+  const { email } = params
+  User.deleteOne({ email: email }, (err, result) => {
+    if (err) return res.json(createSendData(500, 'ERROR', err))
+    return res.json(createSendData(200, 'SUCCESS', result))
+  })
+}
+
 const getList = res => {
   User.find({}, (err, users) => {
-    if (err) return console.log('err', err)
-    res.json(users.map(u => Object.assign(u, { pwd: '***' })))
+    if (err) return res.json(createSendData(500, 'ERROR', err))
+    return res.json(createSendData(200, 'SUCCESS', users.map(user => encodePWD(user))))
   })
 }
+
 const getOneByEmail = (params, res) => {
   const { email } = params
   User.findOne({ email: email }, (err, user) => {
-    if (err) return console.log('err', err)
-    if (!user) return res.json({ code: 404, msg: `can not find email : ${email}` })
-    res.json(Object.assign(user, { pwd: '***' }))
+    const { code, errmsg } = err
+    if (err) return res.json(createSendData(code, errmsg, err))
+    if (!user) return res.json(createSendData(404, 'NOT FOUND', {}))
+    return res.json(createSendData(200, 'SUCCESS', encodePWD(user)))
   })
 }
 

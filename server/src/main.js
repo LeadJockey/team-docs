@@ -18,7 +18,7 @@ app.use(express.urlencoded({ extended: true }))
 app.use(session({ secret: 'keyboard cat', resave: false, saveUninitialized: true }))
 app.use(cors())
 app.use(logger('common'))
-app.use('/user', require('./api/v1/users/user.router'))
+app.use('/api/v1/user', require('./api/v1/users/user.router'))
 app.use('/', (req, res) => res.json({ code: 200, msg: 'hello index page' }))
 // server
 app.listen(process.env.SERVER_PORT, SERVER_LISTENING)
