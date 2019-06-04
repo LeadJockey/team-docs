@@ -36,10 +36,18 @@ const getList = res => {
 const getOneByEmail = (params, res) => {
   const { email } = params
   User.findOne({ email: email }, (err, user) => {
-    const { code, errmsg } = err
-    if (err) return res.json(createSendData(code, errmsg, err))
+    if (err) return res.json(createSendData(500, 'ERROR', err))
     if (!user) return res.json(createSendData(404, 'NOT FOUND', {}))
     return res.json(createSendData(200, 'SUCCESS', encodePWD(user)))
+  })
+}
+
+const login = (body, res) => {
+  const { email, pwd } = body
+  User.findOne({ email, pwd }, (err, user) => {
+    if (err) return res.json(createSendData(500, 'ERROR', err))
+    if (!user) return res.json(createSendData(404, 'NOT FOUND', {}))
+    return res.json(createSendData(200, 'SUCCESS', {}))
   })
 }
 
@@ -48,5 +56,6 @@ module.exports = {
   update,
   remove,
   getList,
-  getOneByEmail
+  getOneByEmail,
+  login
 }
