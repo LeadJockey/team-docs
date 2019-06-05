@@ -1,0 +1,1 @@
+export const DOMAIN = 'http://172.28.31.239:3000'
