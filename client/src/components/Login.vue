@@ -1,5 +1,6 @@
 <template>
   <div class="login_comm">
+    <router-link to="/test">to Test</router-link>
    <form action="" v-on:submit.prevent>
       <h2>Login</h2>
       <div>
@@ -14,7 +15,6 @@
           <input type="password" id="loginPwd" v-model="pwd">
         </span>
       </div>
-      
       <button class="btn_comm" v-on:click="signIn()" :disabled="isValid()">Sign In</button>
       <p>{{info}}</p>
     </form>
@@ -22,7 +22,7 @@
 </template>
 <script>
 import { mapMutations, mapActions } from 'vuex';
-import {login} from './../api/v1/user'
+import { login } from './../api/v1/user'
 
 
 export default {
@@ -38,10 +38,17 @@ export default {
     isValid(){
       return (!this.email || !this.pwd)
     },
+    
     signIn(){
-      console.log(this.email, this.pwd)
-      login(this.email, this.pwd, res =>console.log('next', res))
-      // return this.$store.dispatch('getAuthBool',{ isAuth : !this.$store.getters.getIsAuth });
+      login(this.email,this.pwd,({apiStatus})=> {
+        if(apiStatus === 200){
+          this.$store.dispatch('getAuthBool',{ isAuth : !this.$store.getters.getIsAuth })
+            return  this.$store.getters.getIsAuth && this.$router.push({name : 'Home'})// 해당 코드는 네비게이션 가드 테스크용
+        }else{
+          this.info = '** 이메일 혹은 비밀번호가 맞지 않습니다'
+        }
+           
+      })
     },
   }
 
@@ -58,6 +65,7 @@ export default {
   border-radius: 20px;
   div{overflow:hidden;padding:5px}
   h2{margin:0 0 20px;padding:0}
+  p{font-size:12px;color:red}
   label{float:left;width:100px;font-size:15px;line-height:30px}
   .wrap_inp{display:block;overflow:hidden;height:30px;
     input{width:100%;height:100%;padding: 0 10px;border:1px solid #ddd;box-sizing:border-box}

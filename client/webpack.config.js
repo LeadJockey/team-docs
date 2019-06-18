@@ -11,6 +11,7 @@ module.exports = {
     main : path.resolve(__dirname , './src/main.js')
   },
   devServer : {
+    port : 3000,
     publicPath : '/',
     contentBase : './dist',
     historyApiFallback: true // router mode history의 적용

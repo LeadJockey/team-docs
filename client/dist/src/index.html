@@ -1,0 +1,99 @@
+<head><link href="../style.css" rel="stylesheet"></head>Html Webpack Plugin:
+<pre>
+  Error: Child compilation failed:
+  Entry module not found: Error: Can't resolve '/Users/lukas/workspace/team-docs/client/index.html' in '/Users/lukas/workspace/team-docs/client':
+  Error: Can't resolve '/Users/lukas/workspace/team-docs/client/index.html' in '/Users/lukas/workspace/team-docs/client'
+  
+  - compiler.js:79 childCompiler.runAsChild
+    [client]/[html-webpack-plugin]/lib/compiler.js:79:16
+  
+  - Compiler.js:306 compile
+    [client]/[webpack]/lib/Compiler.js:306:11
+  
+  - Compiler.js:631 hooks.afterCompile.callAsync.err
+    [client]/[webpack]/lib/Compiler.js:631:15
+  
+  
+  - Hook.js:154 AsyncSeriesHook.lazyCompileHook
+    [client]/[tapable]/lib/Hook.js:154:20
+  
+  - Compiler.js:628 compilation.seal.err
+    [client]/[webpack]/lib/Compiler.js:628:31
+  
+  
+  - Hook.js:154 AsyncSeriesHook.lazyCompileHook
+    [client]/[tapable]/lib/Hook.js:154:20
+  
+  - Compilation.js:1329 hooks.optimizeAssets.callAsync.err
+    [client]/[webpack]/lib/Compilation.js:1329:35
+  
+  
+  - Hook.js:154 AsyncSeriesHook.lazyCompileHook
+    [client]/[tapable]/lib/Hook.js:154:20
+  
+  - Compilation.js:1320 hooks.optimizeChunkAssets.callAsync.err
+    [client]/[webpack]/lib/Compilation.js:1320:32
+  
+  
+  - Hook.js:154 AsyncSeriesHook.lazyCompileHook
+    [client]/[tapable]/lib/Hook.js:154:20
+  
+  - Compilation.js:1315 hooks.additionalAssets.callAsync.err
+    [client]/[webpack]/lib/Compilation.js:1315:36
+  
+  
+  - Hook.js:154 AsyncSeriesHook.lazyCompileHook
+    [client]/[tapable]/lib/Hook.js:154:20
+  
+  - Compilation.js:1311 hooks.optimizeTree.callAsync.err
+    [client]/[webpack]/lib/Compilation.js:1311:32
+  
+  
+  - Hook.js:154 AsyncSeriesHook.lazyCompileHook
+    [client]/[tapable]/lib/Hook.js:154:20
+  
+  - Compilation.js:1248 Compilation.seal
+    [client]/[webpack]/lib/Compilation.js:1248:27
+  
+  - Compiler.js:625 compilation.finish.err
+    [client]/[webpack]/lib/Compiler.js:625:18
+  
+  - Compilation.js:1171 hooks.finishModules.callAsync.err
+    [client]/[webpack]/lib/Compilation.js:1171:4
+  
+  
+  - Hook.js:154 AsyncSeriesHook.lazyCompileHook
+    [client]/[tapable]/lib/Hook.js:154:20
+  
+  - Compilation.js:1163 Compilation.finish
+    [client]/[webpack]/lib/Compilation.js:1163:28
+  
+  - Compiler.js:622 hooks.make.callAsync.err
+    [client]/[webpack]/lib/Compiler.js:622:17
+  
+  
+  - Compilation.js:1095 _addModuleChain
+    [client]/[webpack]/lib/Compilation.js:1095:12
+  
+  - Compilation.js:947 errorAndCallback.bail.err
+    [client]/[webpack]/lib/Compilation.js:947:6
+  
+  - Compilation.js:980 moduleFactory.create
+    [client]/[webpack]/lib/Compilation.js:980:14
+  
+  - NormalModuleFactory.js:397 factory
+    [client]/[webpack]/lib/NormalModuleFactory.js:397:22
+  
+  - NormalModuleFactory.js:130 resolver
+    [client]/[webpack]/lib/NormalModuleFactory.js:130:21
+  
+  - NormalModuleFactory.js:224 asyncLib.parallel
+    [client]/[webpack]/lib/NormalModuleFactory.js:224:22
+  
+  - async.js:2830 
+    [client]/[neo-async]/async.js:2830:7
+  
+  - async.js:6877 
+    [client]/[neo-async]/async.js:6877:13
+  
+</pre><script type="text/javascript" src="../main.js"></script>
